@@ -1,0 +1,11 @@
+{
+  "name": "blog",
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "surge": "^0.17.2"
+  },
+  "private": true
+}
