@@ -35,26 +35,18 @@ export function* rest(iterable) {
   }
 }
 
-export function* reduce(iterable, fn, initial) {
-  let accumulator = initial;
-  for (const value of iterable) {
-    if (Object.is(accumulator, undefined)) {
-      accumulator = value
-    } else {
-      yield accumulator = fn(accumulator, value);
-    }
+export function* reduce(fn, iterable) {
+  let accumulator;
+  for (const value of first(iterable)) {
+    accumulator = value;
+  }
+  for (const value of rest(iterable)) {
+    yield accumulator = fn(accumulator, value);
   }
 }
 
 export function* all(iterable, fn) {
-  yield* reduce(iterable, function*(accumulator, value) {
+  yield* reduce(function*(accumulator, value) {
     yield accumulator && fn(value);
-  }, true);
-}
-
-export function* all(iterable, fn) {
-  let accumulator = true;
-  for (const value of iterable) {
-    yield accumulator = accumulator && fn(value);
-  }
+  }, iterable);
 }
