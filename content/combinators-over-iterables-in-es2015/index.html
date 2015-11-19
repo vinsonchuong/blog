@@ -5,4 +5,88 @@
       Implementing list iteration helpers on top of ES2015 iterables
     </p>
   </header>
+
+  <section>
+    <h1>Intro</h1>
+    <p>
+      My goal is to evaluate the expressiveness of generator functions by
+      exploring the set of combinators over generator functions and iterables.
+    </p>
+  </section>
+
+  <section>
+    <h1>Primitives</h1>
+    <p>
+      Before we can transform and combine iterables, we need functions that can
+      produce them:
+    </p>
+    <code>
+      export function* empty() {}
+
+      export function* list(...values) {
+        for (const value of values) {
+          yield value
+        }
+      }
+    </code>
+
+    <p>
+      We can take specific elements of an iterable:
+    </p>
+    <code>
+      export function* head(iterator) {
+        for (const value of iterator) {
+          yield value;
+          break;
+        }
+      }
+
+      export function* last(iterator) {
+        let previousValue;
+        for (const value of iterator) {
+          previousValue = value;
+        }
+        yield previousValue;
+      }
+
+      export function* tail(iterator) {
+        let seenFirstValue = false;
+        for (const value of iterator) {
+          if (seenFirstValue) {
+            yield value;
+          } else {
+            seenFirstValue = true;
+          }
+        }
+      }
+
+      export function* init(iterator) {
+        let previousValue;
+        for (const value of iterator) {
+          if (!Object.is(previousValue, undefined)) {
+            yield previousValue;
+          }
+          previousValue = value;
+        }
+      }
+    </code>
+
+    <p>
+      We can also combine two iterables:
+    </p>
+    <code>
+      export function* concat(car, cdr) {
+        yield* car;
+        yield* cdr;
+      }
+    </code>
+  </section>
+
+  <section>
+    <h1>Async Generators</h1>
+  </section>
+
+  <section>
+    <h1>Push vs. Pull</h1>
+  </section>
 </article>
