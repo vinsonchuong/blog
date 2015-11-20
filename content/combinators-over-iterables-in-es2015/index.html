@@ -34,24 +34,24 @@
       We can take specific elements of an iterable:
     </p>
     <code>
-      export function* head(iterator) {
-        for (const value of iterator) {
+      export function* head(iterable) {
+        for (const value of iterable) {
           yield value;
           break;
         }
       }
 
-      export function* last(iterator) {
+      export function* last(iterable) {
         let previousValue;
-        for (const value of iterator) {
+        for (const value of iterable) {
           previousValue = value;
         }
         yield previousValue;
       }
 
-      export function* tail(iterator) {
+      export function* tail(iterable) {
         let seenFirstValue = false;
-        for (const value of iterator) {
+        for (const value of iterable) {
           if (seenFirstValue) {
             yield value;
           } else {
@@ -60,9 +60,9 @@
         }
       }
 
-      export function* init(iterator) {
+      export function* init(iterable) {
         let previousValue;
-        for (const value of iterator) {
+        for (const value of iterable) {
           if (!Object.is(previousValue, undefined)) {
             yield previousValue;
           }
@@ -72,14 +72,54 @@
     </code>
 
     <p>
-      We can also combine two iterables:
+      We can also combine iterables:
     </p>
     <code>
-      export function* concat(car, cdr) {
-        yield* car;
-        yield* cdr;
+      export function* concat(...iterables) {
+        for (const iterable of iterables) {
+          yield* iterable;
+        }
       }
     </code>
+  </section>
+
+  <section>
+    <h1>Transforming Iterables</h1>
+    <p>
+      Now come the standard list iteration functions:
+    </p>
+    <code>
+      export function* map(fn, iterable) {
+        for (const value of iterable) {
+          yield fn(value);
+        }
+      }
+
+      export function* filter(fn, iterable) {
+        for (const value of iterable) {
+          if (fn(value)) {
+            yield value;
+          }
+        }
+      }
+
+      export function* fold(fn, initial, iterable) {
+        let accumulator = initial;
+        for (const value of iterable) {
+          yield accumulator = fn(accumulator, value);
+        }
+      }
+    </code>
+  </section>
+
+  <section>
+    <h1>Folds</h1>
+    <code>
+    </code>
+  </section>
+
+  <section>
+    <h1>Transducers</h1>
   </section>
 
   <section>
