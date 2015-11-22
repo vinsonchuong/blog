@@ -106,6 +106,14 @@
       export function* fold(fn, initial, iterable) {
         let accumulator = initial;
         for (const value of iterable) {
+          accumulator = fn(accumulator, value);
+        }
+        yield accumulator;
+      }
+
+      export function* scan(fn, initial, iterable) {
+        let accumulator = initial;
+        for (const value of iterable) {
           yield accumulator = fn(accumulator, value);
         }
       }
