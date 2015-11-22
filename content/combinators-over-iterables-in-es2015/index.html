@@ -150,6 +150,40 @@
   </section>
 
   <section>
+    <h1>More Complex List Transformations</h1>
+    <code>
+      export function* intersperse(betweenValue, iterable) {
+        yield* head(iterable);
+        for (const value of tail(iterable)) {
+          yield betweenValue;
+          yield value;
+        }
+      }
+
+      export function* intercalate(betweenIterable, iterable) {
+        yield* head(iterable);
+        for (const value of tail(iterable)) {
+          yield* betweenIterable;
+          yield value;
+        }
+      }
+
+      export function* zip(...iterables) {}
+    </code>
+  </section>
+
+  <section>
+    <h1>Extracting Sublists</h1>
+    <code>
+      export function* take(n, iterable) {}
+      export function* drop(n, iterable) {}
+
+      export function* takeWhile(fn, iterable) {}
+      export function* dropWhile(fn, iterable) {}
+    </code>
+  </section>
+
+  <section>
     <h1>Transducers</h1>
   </section>
 
