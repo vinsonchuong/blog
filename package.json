@@ -5,14 +5,14 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "jspm": "^0.16.15",
+    "jspm": "^0.16.19",
     "http-server": "^0.8.5",
-    "surge": "^0.17.3"
+    "surge": "^0.17.4"
   },
   "private": true,
   "jspm": {
     "dependencies": {
-      "webcomponents.js": "npm:webcomponents.js@^0.7.19"
+      "webcomponents.js": "npm:webcomponents.js@^0.7.20"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
