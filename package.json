@@ -5,9 +5,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "jspm": "^0.16.19",
+    "jspm": "^0.16.27",
     "http-server": "^0.8.5",
-    "surge": "^0.17.4"
+    "surge": "^0.17.7"
   },
   "private": true,
   "jspm": {
